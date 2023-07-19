@@ -39,6 +39,7 @@ class OpenaiLlm(Singleton, LLM):
             context=context, query=user_input)))
 
         # 3. Generate response
+        logger.info(f'History: {history}')
         response = await self.chat_open_ai.agenerate(
             [history], callbacks=[callback, audioCallback, StreamingStdOutCallbackHandler()])
         logger.info(f'Response: {response}')
